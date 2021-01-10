@@ -1,7 +1,6 @@
 # README
 
 ## usersテーブル
-| birth_date      | data   | null: false         |
 | Column             | Type   | Options                   |
 | ------------------ | ------ | ------------------------- |
 | nickname           | string | null: false               |
