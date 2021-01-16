@@ -6,18 +6,18 @@ class Item < ApplicationRecord
   belongs_to :condition
   belongs_to :postagetype
   belongs_to :prefecture
-  belongs_to :deliverydays
+  belongs_to :deliveryday
   has_one_attached :image
   
 
   with_options presence: true do
     validates :name,          length: { maximum: 40 }
     validates :text,          length: { maximum: 1000 }
-    validates :category,      numericality: { other_than: 1}
-    validates :condition,     numericality: { other_than: 1}
-    validates :postagetype,   numericality: { other_than: 1}
-    validates :prefecture,    numericality: { other_than: 1}
-    validates :deliverydays,  numericality: { other_than: 1}
+    validates :category_id,      numericality: { other_than: 1}
+    validates :condition_id,     numericality: { other_than: 1}
+    validates :postagetype_id,   numericality: { other_than: 1}
+    validates :prefecture_id,    numericality: { other_than: 1}
+    validates :deliveryday_id,   numericality: { other_than: 1}
     validates :price,         numericality: { greater_than: 299, less_than: 10000000 }
   end
 
