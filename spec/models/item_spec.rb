@@ -16,7 +16,7 @@ RSpec.describe Item, type: :model do
       it "imageが添付されていないと登録できない" do
         @item.image = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include()
+        expect(@item.errors.full_messages).to include("Image can't be blank")
       end
       it "nameがないと登録できない" do
         @item.name = ""
