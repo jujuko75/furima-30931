@@ -1,7 +1,10 @@
 class Buyerinfo < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
+  attr_accessor :token
   belongs_to :prefecture
-  #belongs_to :purchase
+  has_one :order
+  has_one :item, through: :order
+  
 
   with_options presence: true do
     validates :postal_code, format: {with: /\A\d{3}[-]\d{4}\z/}
@@ -9,5 +12,6 @@ class Buyerinfo < ApplicationRecord
     validates :city
     validates :house_number
     validates :phone_number,format: {with: /\A\d{10,11}\z/}
+    validates :token
   end
 end
