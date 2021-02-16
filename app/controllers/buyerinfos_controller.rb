@@ -1,15 +1,17 @@
 class BuyerinfosController < ApplicationController
   def index
-    @buyerinfo = Buyerinfo.new
+    @order_buyerinfo = OrderBuyerinfo.new
     set_item
   end
 
   def create
-    @buyerinfo = Buyerinfo.new(buyer_params)
     set_item
-    if  @buyerinfo.valid?
+    @order_buyerinfo = OrderBuyerinfo.new(buyer_params)
+
+    if  
+      @order_buyerinfo.valid?
       pay_item 
-      @buyerinfo.save
+      @order_buyerinfo.save
       redirect_to root_path
     else
       render :index
@@ -18,8 +20,9 @@ class BuyerinfosController < ApplicationController
 
   private
   def buyer_params
-    params.permit(:postal_code, :prefecture_id, :city, :house_number, :building_name, :phone_number).merge(item_id: params[:item_id], token: params[:token])
+    params.permit(:postal_code, :prefecture_id, :city, :house_number, :building_name, :phone_number).merge(token: params[:token],item_id: @item.id,user_id: current_user.id)
   end
+  
 
   def set_item
     @item = Item.find(params[:item_id])
