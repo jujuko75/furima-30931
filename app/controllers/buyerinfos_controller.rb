@@ -1,7 +1,7 @@
 class BuyerinfosController < ApplicationController
   before_action :authenticate_user!, only:[:index, :create]
-  before_action :redirect_to_root, only:[:index]
   before_action :set_item, only:[:index, :create]
+  before_action :redirect_to_root, only:[:index, :create]
 
   def index
     @order_buyerinfo = OrderBuyerinfo.new
@@ -40,7 +40,6 @@ class BuyerinfosController < ApplicationController
   end
 
   def redirect_to_root
-    set_item
     if current_user.id == @item.user_id || @item.order.present?
       redirect_to root_path
     end
