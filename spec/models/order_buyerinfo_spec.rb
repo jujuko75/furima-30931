@@ -67,6 +67,17 @@ RSpec.describe OrderBuyerinfo, type: :model do
         @order_buyerinfo.valid?
         expect(@order_buyerinfo.errors.full_messages).to include("Token can't be blank")
       end
+      it 'user_idが空の場合保存ができないこと' do
+        @order_buyerinfo.user_id =""
+        @order_buyerinfo.valid?
+        expect(@order_buyerinfo.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idが空の場合保存ができないこと' do
+        @order_buyerinfo.item_id=""
+        @order_buyerinfo.valid?
+        expect(@order_buyerinfo.errors.full_messages).to include("Item can't be blank")
+      end
+
     end
   end
 
