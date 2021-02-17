@@ -1,14 +1,13 @@
 class BuyerinfosController < ApplicationController
   before_action :authenticate_user!, only:[:index, :create]
   before_action :redirect_to_root, only:[:index]
+  before_action :set_item, only:[:index, :create]
 
   def index
     @order_buyerinfo = OrderBuyerinfo.new
-    set_item
   end
 
   def create
-    set_item
     @order_buyerinfo = OrderBuyerinfo.new(buyer_params)
 
     if  
