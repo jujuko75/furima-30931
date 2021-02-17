@@ -1,4 +1,7 @@
 class BuyerinfosController < ApplicationController
+  before_action :authenticate_user!, only:[:index, :create]
+  before_action :redirect_to_root, only:[:index]
+
   def index
     @order_buyerinfo = OrderBuyerinfo.new
     set_item
@@ -22,7 +25,7 @@ class BuyerinfosController < ApplicationController
   def buyer_params
     params.permit(:postal_code, :prefecture_id, :city, :house_number, :building_name, :phone_number).merge(token: params[:token],item_id: @item.id,user_id: current_user.id)
   end
-  
+
 
   def set_item
     @item = Item.find(params[:item_id])
@@ -35,5 +38,12 @@ class BuyerinfosController < ApplicationController
       card: buyer_params[:token],
       currency: 'jpy',
     )
+  end
+
+  def redirect_to_root
+    set_item
+    if current_user.id == @item.user_id || @item.order.present?
+      redirect_to root_path
+    end
   end
 end
