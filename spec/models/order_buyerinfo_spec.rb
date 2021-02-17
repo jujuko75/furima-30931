@@ -57,6 +57,11 @@ RSpec.describe OrderBuyerinfo, type: :model do
         @order_buyerinfo.valid?
         expect(@order_buyerinfo.errors.full_messages).to include("Phone number is invalid")
       end
+      it '電話番号が英数混合では登録できないこと' do
+        @order_buyerinfo.phone_number="12345abcde"
+        @order_buyerinfo.valid?
+        expect(@order_buyerinfo.errors.full_messages).to include("Phone number is invalid")
+      end
       it 'トークンが空だと保存できないこと' do
         @order_buyerinfo.token=""
         @order_buyerinfo.valid?
