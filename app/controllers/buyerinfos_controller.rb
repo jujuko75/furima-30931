@@ -10,8 +10,7 @@ class BuyerinfosController < ApplicationController
   def create
     @order_buyerinfo = OrderBuyerinfo.new(buyer_params)
 
-    if  
-      @order_buyerinfo.valid?
+    if  @order_buyerinfo.valid?
       pay_item 
       @order_buyerinfo.save
       redirect_to root_path

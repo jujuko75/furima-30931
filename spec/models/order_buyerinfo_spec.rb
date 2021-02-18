@@ -3,7 +3,10 @@ require 'rails_helper'
 RSpec.describe OrderBuyerinfo, type: :model do
   describe '決済情報の保存' do
     before do
-      @order_buyerinfo = FactoryBot.build(:order_buyerinfo)
+      @user = FactoryBot.create(:user)
+      @item = FactoryBot.create(:item)
+      @order_buyerinfo = FactoryBot.build(:order_buyerinfo, user_id: @user.id,item_id: @item.id)
+      sleep(1)
     end
 
     context '正常稼働' do
