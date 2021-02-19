@@ -28,7 +28,7 @@
 | condition_id    | integer    | null: false ,ActiveHash        |
 | postagetype_id  | integer    | null: false ,ActiveHash        | 
 | prefecture_id   | integer    | null: false ,ActiveHash        | 
-| deliverydays_id | integer    | null: false ,ActiveHash        | 
+| deliveryday_id  | integer    | null: false ,ActiveHash        | 
 | user            | references | null: false, foreign_key: true |
 
 ### Association
@@ -54,7 +54,7 @@
 - has_one :buyer_info
 
 
-## Buyer_infoテーブル
+## BuyerInfoテーブル
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
 | postal_code     | string     | null: false, format            |
