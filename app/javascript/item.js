@@ -1,3 +1,5 @@
+if (document.URL.match(/new/) || document.URL.match(/edit/)){
+
 window.addEventListener("DOMContentLoaded", function(){
 
   const priceInput = document.getElementById("item-price");
@@ -12,3 +14,5 @@ window.addEventListener("DOMContentLoaded", function(){
   });
 
 })
+
+}
